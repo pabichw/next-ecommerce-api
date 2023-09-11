@@ -1,16 +1,16 @@
 import { prisma } from "../../../../db";
 import type { QueryResolvers } from "./../../../types.generated";
 
-export const product: NonNullable<QueryResolvers["product"]> = async (
+export const collection: NonNullable<QueryResolvers["collection"]> = async (
   _parent,
   _arg,
   _ctx,
 ) => {
-  const product = prisma.product.findUnique({
+  const collection = prisma.collection.findUnique({
     where: {
       id: _arg.id,
     },
   });
 
-  return product;
+  return collection;
 };

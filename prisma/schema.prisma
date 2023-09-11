@@ -8,11 +8,27 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(cuid())
-  name        String
-  slug        String
-  description String
-  price       Int
-  createdAt   DateTime @default(now())
-  updateAt    DateTime @updatedAt
+  id           String      @id @default(cuid())
+  name         String
+  slug         String
+  description  String
+  price        Int
+  createdAt    DateTime    @default(now())
+  updateAt     DateTime    @updatedAt
+  categories   Category[]
+  Collection   Collection? @relation(fields: [collectionId], references: [id])
+  collectionId String?
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String
+  slug     String
+  products Product[]
+}
+
+model Collection {
+  id       String    @id @default(cuid())
+  name     String
+  products Product[]
 }
