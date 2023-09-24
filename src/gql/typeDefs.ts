@@ -26,7 +26,7 @@ const typeDefs = gql`
 
   type Query {
     product(id: ID, pagination: Pagination): [Product]!
-    category(slug: String, pagination: Pagination): [Category]
+    category(slug: String, pagination: Pagination): [Category]!
   }
 `
 
