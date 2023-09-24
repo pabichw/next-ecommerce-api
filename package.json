@@ -4,7 +4,7 @@
     "postinstall": "pnpm codegen",
     "dev": "tsx watch src/server.ts",
     "seed": "tsx prisma/seed.ts",
-    "build": "pnpm prisma generate && pnpm prisma migrate dev",
+    "build": "pnpx prisma generate && pnpx prisma migrate dev",
     "build:start": "pnpm dev"
   },
   "devDependencies": {
