@@ -11,6 +11,7 @@
     "@graphql-codegen/cli": "^5.0.0",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "graphql": "^16.8.0",
+    "graphql-tag": "^2.12.6",
     "prettier": "^3.0.3",
     "prisma": "^5.2.0",
     "tsx": "^3.12.8",

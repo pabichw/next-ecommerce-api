@@ -31,6 +31,9 @@ devDependencies:
   graphql:
     specifier: ^16.8.0
     version: 16.8.0
+  graphql-tag:
+    specifier: ^2.12.6
+    version: 2.12.6(graphql@16.8.0)
   prettier:
     specifier: ^3.0.3
     version: 3.0.3

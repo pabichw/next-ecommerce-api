@@ -8,27 +8,27 @@ datasource db {
 }
 
 model Product {
-  id           String      @id @default(cuid())
-  name         String
-  slug         String
-  description  String
-  price        Int
-  createdAt    DateTime    @default(now())
-  updateAt     DateTime    @updatedAt
-  categories   Category[]
-  Collection   Collection? @relation(fields: [collectionId], references: [id])
-  collectionId String?
+  id          String     @id @default(cuid())
+  name        String
+  slug        String
+  description String
+  price       Int
+  image       String     @default("")
+  category    Category[]
 }
 
 model Category {
-  id       String    @id @default(cuid())
-  name     String
-  slug     String
-  products Product[]
+  id      String    @id @default(cuid())
+  name    String
+  slug    String
+  product Product[]
 }
 
-model Collection {
-  id       String    @id @default(cuid())
-  name     String
-  products Product[]
-}
+// model CategoriesOnPosts {
+//   product    Product  @relation(fields: [productId], references: [id])
+//   productId  String
+//   category   Category @relation(fields: [categoryId], references: [id])
+//   categoryId String
+
+//   @@id([productId, categoryId])
+// }
