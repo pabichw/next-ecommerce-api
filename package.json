@@ -3,7 +3,9 @@
     "codegen": "graphql-codegen --config .graphqlrc.ts",
     "postinstall": "pnpm codegen",
     "dev": "tsx watch src/server.ts",
-    "seed": "tsx prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts",
+    "build": "pnpm prisma generate && pnpm prisma migrate dev && pnpm seed",
+    "build:start": "pnpm dev"
   },
   "devDependencies": {
     "@eddeee888/gcg-typescript-resolver-files": "^0.6.0",
