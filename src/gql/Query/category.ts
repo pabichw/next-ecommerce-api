@@ -25,8 +25,13 @@ export const category: Promise<Category[]> = (
     });
   }
 
+  const pageSize = _arg.pagination.pageSize || 20;
+
   return prisma.category.findMany({
-    ...(_arg.pagination.page ? { take: _arg.pagination.pageSize || 20 } : {}),
-    ...(_arg.pagination.page ? { skip: (_arg.pagination.pageSize || 20) * (_arg.pagination.page - 1) } : {}),
+    ...(_arg.pagination.page ? { take: pageSize } : {}),
+    ...(_arg.pagination.page ? { skip: pageSize * (_arg.pagination.page - 1) } : {}),
+    include: {
+      product: true,
+    }
   })
 };
