@@ -10,6 +10,8 @@ export const category: Promise<Category[]> = (
   console.log('\n_arg', _arg);
   console.log('slug', _arg.slug);
 
+  const pageSize = _arg.pagination.pageSize || 20;
+
   if (_arg.slug) {
     return prisma.category.findMany({
       take: 1,
@@ -20,12 +22,14 @@ export const category: Promise<Category[]> = (
         id: 'asc',
       },
       include: {
-        product: true,
+        product: {
+          ...(_arg.pagination.page ? { take: pageSize } : {}),
+          ...(_arg.pagination.page ? { skip: pageSize * (_arg.pagination.page - 1) } : {}),
+        },
       }
     });
   }
 
-  const pageSize = _arg.pagination.pageSize || 20;
 
   return prisma.category.findMany({
     ...(_arg.pagination.page ? { take: pageSize } : {}),
