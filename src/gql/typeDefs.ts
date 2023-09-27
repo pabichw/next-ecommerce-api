@@ -7,15 +7,21 @@ const typeDefs = gql`
     slug: String!
     description: String!
     price: Int!
-    category: [Category]
     image: String!
-    # collections: [Collection!]!
+    category: [Category]
+    collection: [Collection]
   }
 
   type Category {
     id: ID!
     name: String!
     slug: String!
+    product: [Product]
+  }
+
+  type Collection {
+    id: ID!
+    name: String!
     product: [Product]
   }
 
@@ -27,6 +33,7 @@ const typeDefs = gql`
   type Query {
     product(id: ID, pagination: Pagination): [Product]!
     category(slug: String, pagination: Pagination): [Category]!
+    collection(name: String): [Collection]!
   }
 `
 

@@ -15,12 +15,19 @@ model Product {
   price       Int
   image       String     @default("")
   category    Category[]
+  collection  Collection[]
 }
 
 model Category {
   id      String    @id @default(cuid())
   name    String
   slug    String
+  product Product[]
+}
+
+model Collection {
+  id      String    @id @default(cuid())
+  name    String
   product Product[]
 }
 
