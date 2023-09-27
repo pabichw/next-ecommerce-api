@@ -21,6 +21,7 @@ export const product: NonNullable<Product[]> = async (
   }
 
   const products = await prisma.product.findMany({
+    ...(_arg.name ? { where: { name: { contains: _arg.name } }} : {}),
     ...(_arg.pagination.page ? { take: _arg.pagination.pageSize || 20 } : {}),
     ...(_arg.pagination.page ? { skip: (_arg.pagination.pageSize || 20) * (_arg.pagination.page - 1) } : {}),
   });
