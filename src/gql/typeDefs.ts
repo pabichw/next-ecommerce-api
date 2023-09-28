@@ -8,6 +8,7 @@ const typeDefs = gql`
     description: String!
     price: Int!
     image: String!
+    configurableAttributes: String
     category: [Category]
     collection: [Collection]
   }
