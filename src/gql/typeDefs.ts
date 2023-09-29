@@ -26,14 +26,24 @@ const typeDefs = gql`
     product: [Product]
   }
 
-  input Pagination {
+  input PaginationInput {
     page: Int!
     pageSize: Int!
   }
 
+  type Pagination {
+    pages: Int!
+    total: Int!
+  }
+
+  type CategoryWithPagination {
+    pagination: Pagination
+    data: [Category!]!
+  }
+  
   type Query {
-    product(id: ID, name: String, pagination: Pagination): [Product]!
-    category(slug: String, pagination: Pagination): [Category]!
+    product(id: ID, name: String, pagination: PaginationInput): [Product]!
+    category(slug: String, pagination: PaginationInput): CategoryWithPagination
     collection(name: String): [Collection]!
   }
 `
