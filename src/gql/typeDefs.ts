@@ -11,6 +11,7 @@ const typeDefs = gql`
     configurableAttributes: String
     category: [Category]
     collection: [Collection]
+    relatedProduct: [Product]
   }
 
   type Category {

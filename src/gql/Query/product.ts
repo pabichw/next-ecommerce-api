@@ -8,16 +8,17 @@ export const product: NonNullable<Product[]> = async (
 ) => {
 
   if (_arg.id) {
-    const product = await prisma.product.findUnique({
+    const product = await prisma.product.findMany({
       where: {
         id: _arg.id,
       },
       include: {
         category: true,
+        relatedProduct: true
       }
     });
 
-    return [product];
+    return product;
   }
 
   const products = await prisma.product.findMany({

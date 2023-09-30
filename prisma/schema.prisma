@@ -17,6 +17,8 @@ model Product {
   configurableAttributes String       @default("")
   category               Category[]
   collection             Collection[]
+  relatedProduct         Product[]    @relation("relatedProduct")
+  relatedProductRelation Product[]    @relation("relatedProduct")
 }
 
 model Category {
