@@ -6,21 +6,21 @@
     "build:start": "pnpm dev"
   },
   "devDependencies": {
-    "@eddeee888/gcg-typescript-resolver-files": "^0.6.0",
-    "@faker-js/faker": "^8.0.2",
-    "@graphql-codegen/cli": "^5.0.0",
-    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
-    "graphql": "^16.8.0",
-    "graphql-tag": "^2.12.6",
-    "prettier": "^3.0.3",
-    "prisma": "^5.2.0",
-    "tsx": "^3.12.8",
-    "typescript": "^5.2.2"
+    "@eddeee888/gcg-typescript-resolver-files": "0.7.1",
+    "@faker-js/faker": "8.1.0",
+    "@graphql-codegen/cli": "5.0.0",
+    "@trivago/prettier-plugin-sort-imports": "4.2.0",
+    "graphql": "16.8.1",
+    "graphql-tag": "2.12.6",
+    "prettier": "3.0.3",
+    "prisma": "5.3.1",
+    "tsx": "3.13.0",
+    "typescript": "5.2.2"
   },
   "dependencies": {
-    "@apollo/server": "^4.9.3",
-    "@prisma/client": "^5.2.0",
-    "graphql-scalars": "^1.22.2"
+    "@apollo/server": "4.9.3",
+    "@prisma/client": "5.3.1",
+    "graphql-scalars": "1.22.2"
   },
   "type": "module"
 }
