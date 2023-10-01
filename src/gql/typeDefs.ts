@@ -32,6 +32,14 @@ const typeDefs = gql`
     pageSize: Int!
   }
 
+  input ProductUpsertInput {
+    name: String
+    slug: String
+    description: String
+    price: Int
+    image: String
+  }
+
   type Pagination {
     pages: Int!
     total: Int!
@@ -46,6 +54,10 @@ const typeDefs = gql`
     product(id: ID, name: String, pagination: PaginationInput): [Product]!
     category(slug: String, pagination: PaginationInput): CategoryWithPagination
     collection(name: String): [Collection]!
+  }
+
+  type Mutation {
+    upsertProduct(id: ID, product: ProductUpsertInput!): Product
   }
 `
 
