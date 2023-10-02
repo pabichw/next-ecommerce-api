@@ -19,6 +19,7 @@ model Product {
   collection             Collection[]
   relatedProduct         Product[]    @relation("relatedProduct")
   relatedProductRelation Product[]    @relation("relatedProduct")
+  reviews                Review[]
 }
 
 model Category {
@@ -32,6 +33,17 @@ model Collection {
   id      String    @id @default(cuid())
   name    String
   product Product[]
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  headline  String
+  content   String
+  rating    Int
+  name      String
+  email     String
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId String?
 }
 
 // model CategoriesOnPosts {

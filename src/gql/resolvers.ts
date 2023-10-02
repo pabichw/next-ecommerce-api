@@ -2,7 +2,8 @@
 import { product } from './Query/product';
 import { category } from './Query/category';
 import { collection } from './Query/collection';
-import { upsertProduct } from './Mutation/product';
+import { insertReview, upsertProduct } from './Mutation/product';
+
 const resolvers = {
   Query: {
     product,
@@ -10,6 +11,7 @@ const resolvers = {
     collection,
   },
   Mutation: {
+    insertReview,
     upsertProduct
   }
 };

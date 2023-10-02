@@ -12,6 +12,7 @@ const typeDefs = gql`
     category: [Category]
     collection: [Collection]
     relatedProduct: [Product]
+    reviews: [Review]
   }
 
   type Category {
@@ -25,6 +26,23 @@ const typeDefs = gql`
     id: ID!
     name: String!
     product: [Product]
+  }
+
+  type Review {
+    id: ID!
+    headline: String!
+    content:  String!
+    rating:   Int!
+    name: String!
+    email: String!
+  }
+
+  input ReviewInput {
+    headline: String!
+    content:  String!
+    rating:   Int!
+    name: String!
+    email: String!
   }
 
   input PaginationInput {
@@ -58,6 +76,7 @@ const typeDefs = gql`
 
   type Mutation {
     upsertProduct(id: ID, product: ProductUpsertInput!): Product
+    insertReview(product: ID!, review: ReviewInput!): Review
   }
 `
 
