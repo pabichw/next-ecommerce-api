@@ -15,7 +15,11 @@ export const product: NonNullable<Product[]> = async (
       include: {
         category: true,
         relatedProduct: true,
-        reviews: true,
+        reviews: {
+          orderBy: {
+            rating: 'desc'
+          }
+        },
       }
     });
 
