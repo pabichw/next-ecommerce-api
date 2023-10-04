@@ -36,7 +36,29 @@ export const addToCart = async (
     return null
   }
 
-  const orderItem = await prisma.orderItem.create({ 
+  /* existing order itme */
+  const orderItemWithThisProduct = await prisma.orderItem.findFirst({ where: { AND: [ { orderId: arg.id } , { productId: arg.productId }] }})
+  if (orderItemWithThisProduct) {
+    await prisma.orderItem.update({ 
+      where: { id: orderItemWithThisProduct.id },
+      data: { quantity: orderItemWithThisProduct.quantity + arg.quantity },
+    })
+
+    return prisma.order.findFirst({
+      where: { id: arg.id },
+      include: { 
+        items: { 
+          include: { 
+            product: true
+          } 
+        } 
+      }
+    })
+  }
+  /* *** */
+
+  //create new orderItem
+  const newOrderItem = await prisma.orderItem.create({ 
     data: {
       productId: arg.productId,
       quantity: arg.quantity,
@@ -44,14 +66,14 @@ export const addToCart = async (
     }
   })
   
-  if (!orderItem) {
-    console.log('Problem while creating an order', orderItem)
+  if (!newOrderItem) {
+    console.log('Problem while creating an order', newOrderItem)
     return null
   }
 
   return prisma.order.update({ 
     where: { id: arg.id },
-    data: { items: { connect: orderItem } },
+    data: { items: { connect: newOrderItem } },
     include: { 
       items: { 
         include: { 
