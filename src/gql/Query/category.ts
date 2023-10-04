@@ -5,7 +5,6 @@ import { PaginatedResource, withPagination } from "../../util/pagination";
 export const category = async (
   _parent,
   _arg,
-  _ctx,
 ): Promise<Category[] | PaginatedResource<Category>> => {
 
   console.log('\n_arg', _arg);

@@ -20,6 +20,7 @@ model Product {
   relatedProduct         Product[]    @relation("relatedProduct")
   relatedProductRelation Product[]    @relation("relatedProduct")
   reviews                Review[]
+  OrderItem              OrderItem[]
 }
 
 model Category {
@@ -44,6 +45,23 @@ model Review {
   email     String
   Product   Product? @relation(fields: [productId], references: [id])
   productId String?
+}
+
+model Order {
+  id             String      @id @default(cuid())
+  items          OrderItem[]
+  status         String      @default("draft")
+  userConnection String
+}
+
+model OrderItem {
+  id                     String  @id @default(cuid())
+  product                Product @relation(fields: [productId], references: [id])
+  quantity               Int
+  configurableAttributes String
+  Order                  Order?  @relation(fields: [orderId], references: [id])
+  orderId                String?
+  productId              String
 }
 
 // model CategoriesOnPosts {
