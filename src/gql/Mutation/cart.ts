@@ -1,4 +1,4 @@
-import { Order, Product, Review } from "@prisma/client";
+import { Order, OrderItem, Product, Review } from "@prisma/client";
 import { prisma } from "../../db";
 import { buildWebhook } from "../../util/webhook";
 
@@ -82,5 +82,23 @@ export const addToCart = async (
       } 
     }
   });
+}
 
+type UpdateOrderItemQtyArgs = {
+  orderItemId: string,
+  quantity: number,
+}
+
+export const updateOrderItemQty = async (
+  _: any,
+  args: UpdateOrderItemQtyArgs
+): Promise<OrderItem | null> => {
+  if (!args.orderItemId) {
+    return null;
+  }
+
+  return prisma.orderItem.update({ 
+    where: { id: args.orderItemId }, 
+    data: { quantity: args.quantity } 
+  })
 }

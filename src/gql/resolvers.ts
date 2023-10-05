@@ -4,7 +4,7 @@ import { category } from './Query/category';
 import { collection } from './Query/collection';
 import { cart } from './Query/cart';
 import { insertReview, upsertProduct } from './Mutation/product';
-import { addToCart } from './Mutation/cart';
+import { addToCart, updateOrderItemQty } from './Mutation/cart';
 
 const resolvers = {
   Query: {
@@ -16,7 +16,8 @@ const resolvers = {
   Mutation: {
     insertReview,
     upsertProduct,
-    addToCart
+    addToCart,
+    updateOrderItemQty
   }
 };
 
