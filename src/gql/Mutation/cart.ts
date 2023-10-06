@@ -85,6 +85,7 @@ export const addToCart = async (
 }
 
 type UpdateOrderItemQtyArgs = {
+  orderId: string,
   orderItemId: string,
   quantity: number,
 }
@@ -92,9 +93,20 @@ type UpdateOrderItemQtyArgs = {
 export const updateOrderItemQty = async (
   _: any,
   args: UpdateOrderItemQtyArgs
-): Promise<OrderItem | null> => {
+): Promise<OrderItem | boolean | null> => {
   if (!args.orderItemId) {
     return null;
+  }
+  if (args.quantity === 0) {
+    return prisma.order.update({
+      where: { id: args.orderId },
+      data: {
+        items: {
+          disconnect: [{ id: args.orderItemId }]
+        }
+      }
+    }).then(() => null) // fix return type later
+    // also delete orderItem
   }
 
   return prisma.orderItem.update({ 

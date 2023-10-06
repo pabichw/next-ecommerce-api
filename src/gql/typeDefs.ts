@@ -93,7 +93,7 @@ const typeDefs = gql`
     upsertProduct(id: ID, product: ProductUpsertInput!): Product
     insertReview(product: ID!, review: ReviewInput!): Review
     addToCart(id: ID!, productId: ID!, quantity: Int!, configurableAttributes: String): Order
-    updateOrderItemQty(orderItemId: ID!, quantity: Int!): OrderItem
+    updateOrderItemQty(orderId: ID, orderItemId: ID!, quantity: Int!): OrderItem
   }
 `
 
