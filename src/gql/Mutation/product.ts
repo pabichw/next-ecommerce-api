@@ -42,7 +42,7 @@ export const upsertProduct = async (
 };
 
 export const insertReview = async (
-  _parent: any,
+  _: any,
   arg: InsertReviewArg,
 ): Promise<Product| null> => {
   const product = await prisma.product.findUnique({
@@ -62,7 +62,11 @@ export const insertReview = async (
 
   return prisma.product.update({ 
     where: { id: arg.product },
-    data: { reviews: { connect: review } }
+    data: { 
+      reviews: { 
+        connect: review
+      },
+    }
   }).then((data) => {
     buildWebhook('/products', { productId: data.id })
     return data

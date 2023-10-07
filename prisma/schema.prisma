@@ -15,6 +15,7 @@ model Product {
   price                  Int
   image                  String       @default("")
   configurableAttributes String       @default("")
+  reviewAvg              Float        @default(0.00)
   category               Category[]
   collection             Collection[]
   relatedProduct         Product[]    @relation("relatedProduct")

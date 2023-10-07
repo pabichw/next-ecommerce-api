@@ -13,6 +13,7 @@ const typeDefs = gql`
     collection: [Collection]
     relatedProduct: [Product]
     reviews: [Review]
+    reviewAvg: Float
   }
 
   type Category {
@@ -83,7 +84,7 @@ const typeDefs = gql`
   }
   
   type Query {
-    product(id: ID, name: String, pagination: PaginationInput): [Product]!
+    product(id: ID, name: String, pagination: PaginationInput, sorting: String): [Product]!
     category(slug: String, pagination: PaginationInput): CategoryWithPagination
     collection(name: String): [Collection]!
     cart(id: ID): Order
