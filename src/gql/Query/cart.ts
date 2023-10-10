@@ -1,6 +1,11 @@
 import { Order, OrderItem } from "@prisma/client";
 import { prisma } from "../../db";
 
+enum OrderStatus {
+  DRAFT,
+  PAID,
+}
+
 type CartGetCreateArgs = {
   id: string
   productId: string
@@ -18,7 +23,8 @@ export const cart = async (
     return prisma.order.create({
       data: {
         status: 'draft',
-        userConnection: ''
+        userIdConnection: '',
+        userEmailConnection: ''
       }
     });
   }

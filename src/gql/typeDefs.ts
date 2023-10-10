@@ -33,7 +33,8 @@ const typeDefs = gql`
     id: ID!
     items: [OrderItem]
     status: String
-    userConnection: String
+    userIdConnection: String
+    userEmailConnection: String
   }
 
   type OrderItem {
@@ -41,7 +42,7 @@ const typeDefs = gql`
     product: Product
     quantity: Int!
     configurableAttributes: String
-}
+  }
 
   type Review {
     id: ID!
@@ -88,6 +89,7 @@ const typeDefs = gql`
     category(slug: String, pagination: PaginationInput): CategoryWithPagination
     collection(name: String): [Collection]!
     cart(id: ID): Order
+    order(userId: ID, userEmail: String): [Order]
   }
 
   type Mutation {
@@ -95,6 +97,8 @@ const typeDefs = gql`
     insertReview(product: ID!, review: ReviewInput!): Review
     addToCart(id: ID!, productId: ID!, quantity: Int!, configurableAttributes: String): Order
     updateOrderItemQty(orderId: ID, orderItemId: ID!, quantity: Int!): OrderItem
+    updateOrderStatus(orderId: ID!, status: String!): OrderItem
+    updateOrderOwnership(orderId: ID!, userId: String, userEmail: String): OrderItem
   }
 `
 

@@ -9,6 +9,17 @@ type AddToCartArgs = {
   configurableAttributes: string
 }
 
+type UpdateOrderStatusArgs = {
+  orderId: string
+  status: 'draft' | 'paid'
+}
+
+type UpdateOrderOwnershipArgs = {
+  orderId: string
+  userId: string
+  userEmail: string
+}
+
 export const addToCart = async (
   _: any,
   arg: AddToCartArgs,
@@ -114,3 +125,38 @@ export const updateOrderItemQty = async (
     data: { quantity: args.quantity } 
   })
 }
+
+export const updateOrderStatus = async (
+  _: any,
+  args: UpdateOrderStatusArgs
+): Promise<Order | null> => {
+  if (!args.orderId) {
+    return null;
+  }
+
+  return prisma.order.update({
+    where: { id: args.orderId },
+    data: {
+      status: args.status
+    }
+  })
+}
+
+
+export const updateOrderOwnership = async (
+  _: any,
+  args: UpdateOrderOwnershipArgs
+): Promise<Order | null> => {
+  if (!args.orderId) {
+    return null;
+  }
+
+  return prisma.order.update({
+    where: { id: args.orderId },
+    data: {
+      ...(args.userId ? { userIdConnection: args.userId} : {} ),
+      ...(args.userEmail ? { userEmailConnection: args.userEmail } : {} ),
+    }
+  })
+}
+
